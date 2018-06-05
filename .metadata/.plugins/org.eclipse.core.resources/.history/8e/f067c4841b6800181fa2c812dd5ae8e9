@@ -1,0 +1,19 @@
+package stepDefinitions;
+
+import cucumber.api.java.en.*;
+
+public class stepDefinitions {
+	
+	@Given("^I input array with \"([^\"]*)\"$")
+	public void i_input_array_with(String arg1) throws Throwable {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new PendingException();
+	}
+
+	@Then("^the program should return the result \"([^\"]*)\"$")
+	public void the_program_should_return_the_result(String arg1) throws Throwable {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new PendingException();
+	}
+
+}

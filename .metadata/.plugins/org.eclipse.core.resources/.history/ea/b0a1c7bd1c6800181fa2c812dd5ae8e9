@@ -1,0 +1,28 @@
+package stepDefinitions;
+
+import cucumber.api.PendingException;
+import cucumber.api.java.en.*;
+
+public class stepDefinitions {
+	
+	@Given("^I input array with \"([^\"]*)\"$")
+	public void i_input_array_with(String array) throws Throwable {
+
+		String[] strArray = array.replace(" ","").split(",");
+		int[] intArray = new int[strArray.length]; 
+
+		for(int i = 0; i < strArray.length; i++) {
+		    intArray[i] = Integer.parseInt(strArray[i]);
+		}
+		
+		
+	    throw new PendingException();
+	}
+
+	@Then("^the program should return the result \"([^\"]*)\"$")
+	public void the_program_should_return_the_result(String result) throws Throwable {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new PendingException();
+	}
+
+}

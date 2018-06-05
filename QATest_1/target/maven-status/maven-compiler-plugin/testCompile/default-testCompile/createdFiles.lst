@@ -1,0 +1,5 @@
+pageObjects\WikiResultsPage.class
+stepDefinitions\ArrayTestsStepDefinitions.class
+HooksAndTestRunner\TestRunnerOne.class
+stepDefinitions\WikiTestsStepDefinitions.class
+pageObjects\WikiHomePage.class

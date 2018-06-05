@@ -1,0 +1,63 @@
+package pageObjects;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.How;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+public class WikiHomePage{
+	
+	@FindBy(how = How.ID, using = "searchInput")
+    private WebElement SearchInput;
+
+    @FindBy(how = How.XPATH, using = "//button[type='submit']/i[class='svg-search-icon']")
+    private WebElement SearchButton;
+
+    @FindBy(how = How.ID, using = "searchLanguage")
+    private WebElement SearchDropDown;
+    private WebDriver Driver;
+    
+    public WikiHomePage(WebDriver driver)
+    {
+    	Driver = driver;
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("searchInput")));
+    }
+    
+    public void EnterSearchString(String input){
+    	
+    	WebElement element = Driver.findElement(By.id("searchInput"));
+    	element.clear();
+    	element.sendKeys(input);
+    }
+    
+    public void SelectLanguage(String input){
+    	
+    	WebElement dropDown = Driver.findElement(By.id("searchLanguage"));
+    	dropDown.click();
+    	WebDriverWait wait = new WebDriverWait(Driver, 10);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//select[id='searchLanguage']/option[text()='" + input + "']")));
+    	WebElement option = Driver.findElement(By.xpath("//select[@id='searchLanguage']/option[text()='" + input + "']"));
+    	option.click();
+    	
+//    	Select dropdown = new Select(Driver.findElement(By.id("searchLanguage")));
+//    	dropdown.selectByVisibleText(input);
+
+    }
+    
+    public void ClickSearchButton() {
+    	
+    	WebElement button = Driver.findElement(By.xpath("//button[type='submit']/i[class='svg-search-icon']"));
+    	button.click();
+    }
+    
+    public void IsTitleDisplayedCorrectly() {
+    	
+    	SearchButton.click();
+    }
+
+}

@@ -1,0 +1,38 @@
+package pageObjects;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.How;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import HooksAndTestRunner.Hooks;
+
+public class WikiResultsPage {
+	
+	private WebDriver Driver;
+	
+	@FindBy(how = How.ID, using = "firstHeading")
+    private WebElement FirstHeading;
+
+    @FindBy(how = How.XPATH, using = "//button[type='submit']/i[class='svg-search-icon']")
+    private WebElement SearchButton;
+
+    @FindBy(how = How.ID, using = "searchLanguage")
+    private WebElement SearchDropDown;
+    
+    public WikiResultsPage(WebDriver driver)
+    {
+        Driver = driver;
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("firstHeading")));
+    }
+    
+    public boolean IsCorrectHeadingDisplayed(String heading) {
+    	
+    	String uIHeading = FirstHeading.getText().toLowerCase();
+    	return uIHeading == heading.toLowerCase();
+    }
+}

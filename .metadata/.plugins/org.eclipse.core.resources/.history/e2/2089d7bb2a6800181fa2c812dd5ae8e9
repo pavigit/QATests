@@ -1,0 +1,50 @@
+package stepDefinitions;
+
+import HooksAndTestRunner.Hooks;
+import cucumber.api.PendingException;
+import cucumber.api.java.en.*;
+import pageObjects.WikiHomePage;
+
+public class WikiTestsStepDefinitions extends Hooks{
+	
+	@Given("^I input array with \"([^\"]*)\"$")
+	public void i_input_array_with(String arg1) throws Throwable {
+		WikiHomePage = new WikiHomePage(driver);
+	}
+
+	@Then("^the program should return the result \"([^\"]*)\"$")
+	public void the_program_should_return_the_result(String arg1) throws Throwable {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new PendingException();
+	}
+
+	@Given("^I navigate to wikipedia home page$")
+	public void i_navigate_to_wikipedia_home_page() throws Throwable {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new PendingException();
+	}
+
+	@Given("^enter string \"([^\"]*)\" to search$")
+	public void enter_string_to_search(String arg1) throws Throwable {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new PendingException();
+	}
+
+	@Given("^I select English language$")
+	public void i_select_English_language() throws Throwable {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new PendingException();
+	}
+
+	@When("^I click Search button$")
+	public void i_click_Search_button() throws Throwable {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new PendingException();
+	}
+
+	@Then("^the title in the results page should match the search string \"([^\"]*)\"$")
+	public void the_title_in_the_results_page_should_match_the_search_string(String arg1) throws Throwable {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new PendingException();
+	}
+}

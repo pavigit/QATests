@@ -1,0 +1,23 @@
+package pageObjects;
+
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.How;
+
+import HooksAndTestRunner.Hooks;
+
+public class WikiHomePage extends Hooks{
+	
+	@FindBy(how = How.ID, using = "searchInput")
+    private WebElement SearchInput;
+
+    @FindBy(how = How.ID, using = "address")
+    private WebElement txtAddress;
+
+    @FindBy(how = How.ID, using = "owner")
+    private WebElement txtOwner;
+
+    @FindBy(how = How.ID, using = "phone")
+    private WebElement txtPhoneNumber;
+
+}

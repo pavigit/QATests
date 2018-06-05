@@ -1,0 +1,20 @@
+Feature: WikipediaTests
+  As a user
+  I want to search a string in wikipedia
+  So that I can verify that the results are displayed correctly
+
+@JDK  
+Scenario : Search a string in wikipedia
+
+Given I navigate to wikipedia home page
+--And enter string "<Input>" to search
+And enter string "Hello" to search
+And I select language "English"
+--And I select language "<Language>"
+When I click Search button
+--Then the title in the results page should match the search string "<Input>"
+Then the title in the results page should match the search string "Hello"
+
+--Examples:
+--|	Input	|	Language	|
+--|	Hello	|	English		|

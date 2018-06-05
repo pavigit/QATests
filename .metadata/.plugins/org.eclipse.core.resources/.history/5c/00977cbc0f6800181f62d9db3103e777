@@ -1,0 +1,4 @@
+Feature: ArrayTests
+  As a layman
+  I want to program
+  So that I can find increasingly ordered sub array length in an unordered array of length N > 0

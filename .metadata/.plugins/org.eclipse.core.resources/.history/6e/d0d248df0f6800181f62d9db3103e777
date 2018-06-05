@@ -1,0 +1,11 @@
+Feature: ArrayTests
+  As a layman
+  I want to program
+  So that I can find increasingly ordered sub array length in an unordered array of length N > 0
+  
+Scenario Outline: Failed login using wrong credentials
+
+    Given I input array with "<Array>"
+    Then the program should return the result "<Result>"
+    Examples:
+      | Array    | Result   |

@@ -1,0 +1,65 @@
+package stepDefinitions;
+
+import org.testng.Assert;
+
+import HooksAndTestRunner.TestRunnerOne;
+import cucumber.api.java.en.*;
+import pageObjects.*;
+
+public class WikiTestsStepDefinitions {
+	
+	private WikiHomePage wikiHomePage;
+	private WikiResultsPage wikiResultsPage;
+
+	@Given("^I navigate to wikipedia home page$")
+	public void i_navigate_to_wikipedia_home_page() throws Throwable {
+		wikiHomePage = new WikiHomePage(TestRunnerOne.driver);
+	}
+
+	@Given("^enter string \"([^\"]*)\" to search$")
+	public void enter_string_to_search(String text) throws Throwable {
+		
+		wikiHomePage.EnterSearchString(text);
+	}
+
+	@Given("^I select language \"([^\"]*)\"$")
+	public void i_select_language(String language) throws Throwable {
+		
+	    wikiHomePage.SelectLanguage(language);
+	}
+
+	@When("^I click Search button$")
+	public void i_click_Search_button() throws Throwable {
+		
+		wikiHomePage.ClickSearchButton();
+	}
+
+	@Then("^the title in the results page should match the search string \"([^\"]*)\"$")
+	public void the_title_in_the_results_page_should_match_the_search_string(String heading) throws Throwable {
+	    
+		wikiResultsPage = new WikiResultsPage(driver);
+		boolean displayed = wikiResultsPage.IsCorrectHeadingDisplayed(heading);
+		Assert.assertEquals(displayed, true);
+	}
+	
+	@Then("^another language \"([^\"]*)\" link is displayed$")
+	public void another_language_link_is_displayed(String language) throws Throwable {
+		
+		boolean displayed = wikiResultsPage.IsOtherLanguageLinkDisplayed(language);
+		Assert.assertEquals(displayed, true);
+	}
+
+	@When("^I click the other language \"([^\"]*)\" link$")
+	public void i_click_the_other_language_link(String language) throws Throwable {
+	    
+		wikiResultsPage.ClickOtherLanguageLink(language);
+	}
+
+	@Then("^search results page will display \"([^\"]*)\" language link$")
+	public void search_results_page_will_display_language_link(String language) throws Throwable {
+		
+		wikiResultsPage = new WikiResultsPage(driver);
+		boolean displayed = wikiResultsPage.IsEnglishLanguageLinkDisplayed(language);
+		Assert.assertEquals(displayed, true);
+	}
+}

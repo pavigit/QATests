@@ -1,0 +1,51 @@
+package pageObjects;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+public class WikiResultsPage{
+	
+//	@FindBy(how = How.ID, using = "firstHeading")
+//    private WebElement FirstHeading;
+//
+//    @FindBy(how = How.XPATH, using = "//button[type='submit']/i[class='svg-search-icon']")
+//    private WebElement SearchButton;
+//
+//    @FindBy(how = How.ID, using = "searchLanguage")
+//    private WebElement SearchDropDown;
+    
+    private WebDriver Driver;
+    
+    public WikiResultsPage(WebDriver driver)
+    {
+        Driver = driver;
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("firstHeading")));
+    }
+    
+    public boolean IsCorrectHeadingDisplayed(String heading) {
+    	
+    	WebElement firstHeading = Driver.findElement(By.id("firstHeading"));
+    	String uIHeading = firstHeading.getText().toLowerCase();
+    	return uIHeading == heading.toLowerCase();
+    }
+    
+    public boolean IsOtherLanguageLinkDisplayed(String language) {
+    	
+    	WebElement otherLanguage = Driver.findElement(By
+    			.xpath("//ul/li[contains(text(), 'interlanguage-link')]/a[text()='" + language +"']"));
+    	String uIlink = otherLanguage.getText().toLowerCase();
+    	return uIlink == language.toLowerCase();    	
+    }
+    
+    public boolean IsEnglishLanguageLinkDisplayed(String language) {
+    	
+    	WebElement englishLanguage = Driver.findElement(By
+    			.xpath("//ul/li[contains(text(), 'interlanguage-link')]/a[text()='" + language +"']"));
+    	String uIlink = englishLanguage.getText().toLowerCase();
+    	return uIlink == language.toLowerCase();    	
+    }
+}

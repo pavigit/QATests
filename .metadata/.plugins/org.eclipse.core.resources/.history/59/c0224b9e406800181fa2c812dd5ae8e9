@@ -1,0 +1,52 @@
+package pageObjects;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.How;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import HooksAndTestRunner.Hooks;
+
+public class WikiHomePage extends Hooks{
+	
+	@FindBy(how = How.ID, using = "searchInput")
+    private WebElement SearchInput;
+
+    @FindBy(how = How.XPATH, using = "//button[type='submit']/i[class='svg-search-icon']")
+    private WebElement SearchButton;
+
+    @FindBy(how = How.ID, using = "searchLanguage")
+    private WebElement SearchDropDown;
+    
+    public WikiHomePage(WebDriver driver)
+    {
+        driver = this.driver;
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("searchInput")));
+    }
+    
+    public void EnterSearchString(String input) {
+    	
+    	SearchInput.clear();
+    	SearchInput.sendKeys(input);
+    }
+    
+    public void SelectLanguage(String input) {
+    	
+    	SearchDropDown.click();
+    	WebElement option = driver.findElement(By.xpath("//select[id='searchLanguage']/option[text()='" + input+ "']"));
+    	option.click();
+    }
+    
+    public void ClickSearchButton() {
+    	SearchButton.click();
+    }
+    
+    public void IsTitleDisplayedCorrectly() {
+    	SearchButton.click();
+    }
+
+}

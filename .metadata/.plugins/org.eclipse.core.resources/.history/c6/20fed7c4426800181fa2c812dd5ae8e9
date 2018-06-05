@@ -1,0 +1,54 @@
+package pageObjects;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.How;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+public class WikiHomePage{
+	
+	@FindBy(how = How.ID, using = "searchInput")
+    private WebElement SearchInput;
+
+    @FindBy(how = How.XPATH, using = "//button[type='submit']/i[class='svg-search-icon']")
+    private WebElement SearchButton;
+
+    @FindBy(how = How.ID, using = "searchLanguage")
+    private WebElement SearchDropDown;
+    private WebDriver Driver;
+    
+    public WikiHomePage(WebDriver driver)
+    {
+    	Driver = driver;
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("searchInput")));
+    }
+    
+    public WikiHomePage EnterSearchString(String input) throws InterruptedException{
+    	
+    	SearchInput.clear();
+    	SearchInput.sendKeys(input);
+    	return this;
+    }
+    
+    public WikiHomePage SelectLanguage(String input) throws InterruptedException{
+    	
+    	SearchDropDown.click();
+    	WebElement option = Driver.findElement(By.xpath("//select[id='searchLanguage']/option[text()='" + input+ "']"));
+    	option.click();
+		return this;
+    }
+    
+    public WikiHomePage ClickSearchButton() throws InterruptedException{
+    	SearchButton.click();
+    	return this;
+    }
+    
+    public void IsTitleDisplayedCorrectly() {
+    	SearchButton.click();
+    }
+
+}
